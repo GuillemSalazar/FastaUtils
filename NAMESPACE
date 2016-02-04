@@ -3,3 +3,5 @@
 S3method(subset,fasta)
 export(DNA2RNA)
 export(RNA2DNA)
+export(fasta.cutter)
+export(fasta.sample)
