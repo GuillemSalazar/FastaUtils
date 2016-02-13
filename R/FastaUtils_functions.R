@@ -86,13 +86,13 @@ fasta.sample<-function(infile=NULL,nseq=NULL,file.out=NULL,replacement=FALSE){
   selected<-seqs[sample(1:length(seqs),nseq,replace=replacement)]
   writeXStringSet(selected,filepath=file.out)}
 
-#' Cuts peaces of a fixed length and a random position for all sequences or for a random sample of sequences
+#' Cuts pieces of a fixed length and a random position for all sequences or for a random sample of sequences
 #'
-#' This function cuts peaces of sequences of a fixed length ('read.length') either by sampling randomly a multi-fasta file or by selecting an equal number of peaces from each sequence within a multi-fasta file.
+#' This function cuts pieces of sequences of a fixed length ('read.length') either by sampling randomly a multi-fasta file or by selecting an equal number of pieces from each sequence within a multi-fasta file.
 #' @param infile Multi-Fasta file.
-#' @param sampling.type Sampling type: select a fixed peaces from each sequence ('none', default) or performs a uniform random sampling ('uniform'). In the first case the total number of peaces has to be multiple of the number of sequences.
-#' @param total.reads Total number of peaces.
-#' @param read.length Length of te peaces to be cut.
+#' @param sampling.type Sampling type: select a fixed pieces from each sequence ('none', default) or performs a uniform random sampling ('uniform'). In the first case the total number of pieces has to be multiple of the number of sequences.
+#' @param total.reads Total number of pieces.
+#' @param read.length Length of te pieces to be cut.
 #' @param file.out Path to output file.
 #' @param replacement Logical for using or not (default) sampling of sequences with replacement. Only applies if 'sampling.type=T'.
 #' @keywords FastaUtils

@@ -2,7 +2,7 @@
 % Please edit documentation in R/FastaUtils_functions.R
 \name{fasta.cutter}
 \alias{fasta.cutter}
-\title{Cuts peaces of a fixed length and a random position for all sequences or for a random sample of sequences}
+\title{Cuts pieces of a fixed length and a random position for all sequences or for a random sample of sequences}
 \usage{
 fasta.cutter(infile = NULL, sampling.type = "none", total.reads = NULL,
   read.length = NULL, file.out = NULL, replacement = FALSE)
@@ -10,11 +10,11 @@ fasta.cutter(infile = NULL, sampling.type = "none", total.reads = NULL,
 \arguments{
 \item{infile}{Multi-Fasta file.}
 
-\item{sampling.type}{Sampling type: select a fixed peaces from each sequence ('none', default) or performs a uniform random sampling ('uniform'). In the first case the total number of peaces has to be multiple of the number of sequences.}
+\item{sampling.type}{Sampling type: select a fixed pieces from each sequence ('none', default) or performs a uniform random sampling ('uniform'). In the first case the total number of pieces has to be multiple of the number of sequences.}
 
-\item{total.reads}{Total number of peaces.}
+\item{total.reads}{Total number of pieces.}
 
-\item{read.length}{Length of te peaces to be cut.}
+\item{read.length}{Length of te pieces to be cut.}
 
 \item{file.out}{Path to output file.}
 
@@ -24,7 +24,7 @@ fasta.cutter(infile = NULL, sampling.type = "none", total.reads = NULL,
 Writes a fasta file with the selected sequences and a tab-delimites file with the sequence name and the start and end position of the cut. This file gets the 'file.out' names and adds '.info' at the end.
 }
 \description{
-This function cuts peaces of sequences of a fixed length ('read.length') either by sampling randomly a multi-fasta file or by selecting an equal number of peaces from each sequence within a multi-fasta file.
+This function cuts pieces of sequences of a fixed length ('read.length') either by sampling randomly a multi-fasta file or by selecting an equal number of pieces from each sequence within a multi-fasta file.
 }
 \examples{
 fasta.cutter(infile="http://greengenes.lbl.gov/Data/JD_Tutorial/UnAligSeq24606.txt",sampling.type="uniform",file.out="out.fasta",total.reads=15,read.length=20)
