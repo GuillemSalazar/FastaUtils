@@ -90,11 +90,12 @@ fasta.sample<-function(infile=NULL,nseq=NULL,file.out=NULL,replacement=FALSE){
 #'
 #' This function cuts pieces of sequences of a fixed length ('read.length') either by sampling randomly a multi-fasta file or by selecting an equal number of pieces from each sequence within a multi-fasta file.
 #' @param infile Multi-Fasta file.
-#' @param sampling.type Sampling type: select a fixed pieces from each sequence ('none', default) or performs a uniform random sampling ('uniform'). In the first case the total number of pieces has to be multiple of the number of sequences.
+#' @param sampling.type Sampling type: select a fixed pieces from each sequence ('none', default), performs a uniform random sampling ('uniform') or a sampling based on a lognormal distribution. In the first case the total number of pieces has to be multiple of the number of sequences.
 #' @param total.reads Total number of pieces.
 #' @param read.length Length of te pieces to be cut.
 #' @param file.out Path to output file.
 #' @param replacement Logical for using or not (default) sampling of sequences with replacement. Only applies if 'sampling.type=T'.
+#' @param meanlog,sdlog mean and standard deviation of the distribution on the log scale with default values of 0 and 1 respectively. 
 #' @keywords FastaUtils
 #' @return Writes a fasta file with the selected sequences and a tab-delimites file with the sequence name and the start and end position of the cut. This file gets the 'file.out' names and adds '.info' at the end.
 #' @export
@@ -103,15 +104,17 @@ fasta.sample<-function(infile=NULL,nseq=NULL,file.out=NULL,replacement=FALSE){
 #' fasta.cutter(infile="http://greengenes.lbl.gov/Data/JD_Tutorial/UnAligSeq24606.txt",sampling.type="uniform",file.out="out.fasta",total.reads=15,read.length=20)
 
 
-fasta.cutter<-function(infile=NULL,sampling.type="none",total.reads=NULL,read.length=NULL,file.out=NULL,replacement=FALSE){
+fasta.cutter<-function(infile=NULL,sampling.type="none",total.reads=NULL,read.length=NULL,file.out=NULL,replacement=FALSE,meanlog=0,sdlog=1){
   library(Biostrings)
   seqs<-readDNAStringSet(infile)
-  sampling.type<-match.arg(sampling.type,c("none","uniform"))
+  sampling.type<-match.arg(sampling.type,c("none","uniform","lognormal"))
   reads.per.seq<-total.reads/length(seqs)
   
   if (sampling.type=="none" & reads.per.seq==as.integer(reads.per.seq)) positions<-rep(1:length(seqs),each=reads.per.seq)
   if (sampling.type=="none" & reads.per.seq!=as.integer(reads.per.seq)) stop("if sampling.type='none' total.reads should be a multiple of infile's number of sequences.","\ntotal.reads: ",total.reads,"\nnumber of sequences: ",length(seqs),"\nreads/sequences= ",reads.per.seq)
   if (sampling.type=="uniform") positions<-sample(1:length(seqs),total.reads,replace=replacement)
+  if (sampling.type=="lognormal") prob<-rlnorm(length(seqs),meanlog=meanlog,sdlog=sdlog)
+  if (sampling.type=="lognormal") positions<-sample(1:length(seqs),total.reads,replace=T,prob=prob)
   
   
   seqs.new<-seqs[positions]

@@ -5,12 +5,13 @@
 \title{Cuts pieces of a fixed length and a random position for all sequences or for a random sample of sequences}
 \usage{
 fasta.cutter(infile = NULL, sampling.type = "none", total.reads = NULL,
-  read.length = NULL, file.out = NULL, replacement = FALSE)
+  read.length = NULL, file.out = NULL, replacement = FALSE, meanlog = 0,
+  sdlog = 1)
 }
 \arguments{
 \item{infile}{Multi-Fasta file.}
 
-\item{sampling.type}{Sampling type: select a fixed pieces from each sequence ('none', default) or performs a uniform random sampling ('uniform'). In the first case the total number of pieces has to be multiple of the number of sequences.}
+\item{sampling.type}{Sampling type: select a fixed pieces from each sequence ('none', default), performs a uniform random sampling ('uniform') or a sampling based on a lognormal distribution. In the first case the total number of pieces has to be multiple of the number of sequences.}
 
 \item{total.reads}{Total number of pieces.}
 
@@ -19,6 +20,8 @@ fasta.cutter(infile = NULL, sampling.type = "none", total.reads = NULL,
 \item{file.out}{Path to output file.}
 
 \item{replacement}{Logical for using or not (default) sampling of sequences with replacement. Only applies if 'sampling.type=T'.}
+
+\item{meanlog,sdlog}{mean and standard deviation of the distribution on the log scale with default values of 0 and 1 respectively.}
 }
 \value{
 Writes a fasta file with the selected sequences and a tab-delimites file with the sequence name and the start and end position of the cut. This file gets the 'file.out' names and adds '.info' at the end.
