@@ -113,7 +113,7 @@ fasta.cutter<-function(infile=NULL,sampling.type="none",total.reads=NULL,read.le
   if (sampling.type=="none" & reads.per.seq==as.integer(reads.per.seq)) positions<-rep(1:length(seqs),each=reads.per.seq)
   if (sampling.type=="none" & reads.per.seq!=as.integer(reads.per.seq)) stop("if sampling.type='none' total.reads should be a multiple of infile's number of sequences.","\ntotal.reads: ",total.reads,"\nnumber of sequences: ",length(seqs),"\nreads/sequences= ",reads.per.seq)
   if (sampling.type=="uniform") positions<-sample(1:length(seqs),total.reads,replace=replacement)
-  if (sampling.type=="lognormal") prob<-rlnorm(length(seqs),meanlog=meanlog,sdlog=sdlog)
+  if (sampling.type=="lognormal") prob<-sample(dlnorm(1:length(seqs),meanlog=meanlog,sdlog=sdlog))
   if (sampling.type=="lognormal") positions<-sample(1:length(seqs),total.reads,replace=T,prob=prob)
   
   
