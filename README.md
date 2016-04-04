@@ -3,7 +3,7 @@
 
 The package **FastaUtils** provides tools for the manipulation of DNA/RNA sequence data with R. This package is still *work in progress*.
 
-**EcolUtils** depends on **Biostrings** package which can be installed from **Bioconductor** (see below).
+**FastaUtils** depends on **Biostrings** package which can be installed from **Bioconductor** (see below).
 
 ##Content
 The current version contains the following functions:

@@ -125,6 +125,6 @@ fasta.cutter<-function(infile=NULL,sampling.type="none",total.reads=NULL,read.le
   seqs.new.end<-seqs.new.ini+read.length-1
   
   seqs.new<-subseq(seqs.new,start=seqs.new.ini,end=seqs.new.end)
-  names(seqs.new)<-paste(names(seqs.new),seqs.new.ini,seqs.new.end,sep="_")
+  names(seqs.new)<-paste(names(seqs.new),1:length(positions),seqs.new.ini,seqs.new.end,sep="_")
   writeXStringSet(seqs.new,filepath=file.out)
-  write.table(data.frame(sequence=names(seqs.new),start.pos=seqs.new.ini,end.pos=seqs.new.end),sep="\t",col.names=NA,quote=F,file=paste(file.out,"info",sep="."))}
+  write.table(data.frame(sequence=names(seqs.new),id=1:length(positions),start.pos=seqs.new.ini,end.pos=seqs.new.end),sep="\t",col.names=NA,quote=F,file=paste(file.out,"info",sep="."))}
