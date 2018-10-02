@@ -1,11 +1,11 @@
-#FastaUtils: Utilities for DNA/RNA sequence processing
+# FastaUtils: Utilities for DNA/RNA sequence processing
 
 
 The package **FastaUtils** provides tools for the manipulation of DNA/RNA sequence data with R. This package is still *work in progress*.
 
 **FastaUtils** depends on **Biostrings** package which can be installed from **Bioconductor** (see below).
 
-##Content
+## Content
 The current version contains the following functions:
 
 + **subset.fasta()** 
@@ -19,18 +19,18 @@ Select a random sample of sequences
 + **fasta.cutter()**
 Cuts peaces of a fixed length and a random position for all sequences or for a random sample of sequences
 
-##Authors
+## Authors
 
 Guillem Salazar
 
-##Citation
+## Citation
 
 To see the preferable citation of the package, type:
 
 ```r
 citation("FastalUtils")
 ```
-##Software Versions
+## Software Versions
 
 *R*: version 3.2.1  
 *RStudio*: Version 0.99.467
